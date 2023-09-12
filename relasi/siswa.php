@@ -11,7 +11,7 @@
 </head>
 
 <body class="min-vh-100 d-flex align-items-center">
-    <div class="card w-50 m-auto p-3">
+    <div class="card w-75 m-auto p-3">
         <h3 class="text-center">Siswa</h3>
         <table class="table table-striped table-hover">
             <thead>
@@ -22,6 +22,7 @@
                     <th>Gender</th>
                     <th>Kelas</th>
                     <th>Sekolah</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -40,13 +41,27 @@
                         <td><?= $row['gender']; ?></td>
                         <td><?= $row['tingkat_kelas'] . ' ' . $row['jurusan_kelas'] ?></td>
                         <td><?= $row['nama_sekolah']; ?></td>
+                        <td class="text-center">
+                            <a href="<?= 'update.php?id='.$row['id'];?>" class="btn btn-sm btn-primary">Update</a>
+                            <a href="<?= 'detail.php?id='.$row['id'];?>" class="btn btn-sm btn-primary">Detail</a>
+                            <button onClick="<?= 'hapus('.$row['id'].')'?>" class="btn btn-sm btn-danger">Delete</button>
+                        </td>
                     </tr>
                 <?php
                 }
             ?>
             </tbody>
         </table>
+        <a href="create.php" class="btn btn-sm btn-primary">tambah</a>
     </div>
+    <script>
+        function hapus(id) {
+            var yes = confirm('Yakin Di Hapus?');
+            if (yes == true) {
+                window.location.href = "delete.php?id=" + id;
+            }
+        }
+    </script>
 </body>
 
 </html>
